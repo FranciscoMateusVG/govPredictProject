@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="container">
+      <div class="row justify-content-center pt-5">
+        <h1 class="display-4">SpreadSheet</h1>
+      </div>
+    </div>
+    <!-- Form -->
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="titulo">Column Title</label>
+          <input
+            type="text"
+            name=""
+            id="tituloColuna"
+            class="form-control text-left column-title"
+            placeholder="Insert new title!"
+            aria-describedby="helpId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="">Colum Type</label>
+          <select class="form-control column-type" name="type" id="columnType">
+            <option>Text</option>
+            <option>Number</option>
+            <option>Date</option>
+            <option >Select</option>
+          </select>
+        </div>
+        <div class="itensGroup"></div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="checkbox"
+              class="form-check-input column-required"
+              checked=""
+            />
+            Required?
+          </label>
+        </div>
+      </form>
+    </div>
+    <!-- Create Column -->
+    <div class="container">
+      <div class="row justify-content-end">
+        <a
+          name="Create"
+          id="createColumn"
+          class="btn btn-success mr-3 "
+          href="#"
+          role="button"
+          >Create Column!</a
+        >
+      </div>
+    </div>
+
+    <!-- Spreadsheet -->
+    <div class="container">
+      <div class="row justify-content-center pt-5">
+        <table id="tableSpreadSheet">
+          <thead>
+          <tr class="column"></tr>
+        </thead>
+          <tbody class="spreadSheet">
+          </tbody>
+        </table>
+
+        <p class="rowFlag" hidden>10</p>
+        <p class="letterFlag" hidden>A</p>
+      </div>
+    </div>
+    <!-- Botao de adicionar linhas -->
+    <div class="container addRows" style="display: none">
+      <div class="row justify-content-center pt-5">
+        <a
+          name="adicionaLinhas"
+          id="addRows"
+          class="btn btn-primary"
+          href="#"
+          role="button"
+          >Add 10 rows</a
+        >
+      </div>
+    </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalItens">Itens</h5>
+              
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">How many itens do you wish to create?</label>
+              <input type="number" class="form-control" id="numberItens" min="0">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary generateItens" data-dismiss="modal">Generate!</button>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    >
+      </scripts>
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+          >
+    </script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
