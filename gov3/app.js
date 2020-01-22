@@ -77,16 +77,7 @@ import inputController from './controller/inputController.js';
     //6- Create Input Cell
 
     for (let index = 1; index < nRows; index++) {
-      cell = new Cell(
-        'input',
-        '',
-        type,
-        itens,
-        required,
-        index,
-        column,
-        'visible'
-      );
+      cell = new Cell('input', '', type, itens, required, index, column, '');
       arrayTable.push(cell);
       renderTable(arrayTable);
     }
@@ -136,7 +127,7 @@ import inputController from './controller/inputController.js';
           value.required,
           nRows,
           value.column,
-          'visible'
+          ''
         );
         arrayTable.push(cell);
         renderTable(arrayTable);
@@ -151,7 +142,10 @@ import inputController from './controller/inputController.js';
   };
 
   const controlCells = e => {
+    console.log(e.currentTarget.style.cssText);
+
     //1- Get cells input
+
     const cellValues = getCellValues(e);
 
     //2- Validate input

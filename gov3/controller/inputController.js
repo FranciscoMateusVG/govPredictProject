@@ -3,7 +3,8 @@ const inputController = {
     return {
       value: e.target.value,
       cellHash: `#${e.target.id}`,
-      cell: e.target.id
+      cell: e.target.id,
+      bgColor: e.currentTarget.style.cssText
     };
   },
 
@@ -45,7 +46,7 @@ const inputController = {
   },
 
   updateInputs: (cellValues, arrayTable) => {
-    const { value, cell } = cellValues;
+    const { value, cell, bgColor } = cellValues;
 
     let lineInput = cell.slice(1);
     let columnInput = cell.slice(0, 1);
@@ -55,6 +56,7 @@ const inputController = {
     });
 
     arrayTable[index].title = value;
+    arrayTable[index].status = status;
   }
 };
 export default inputController;

@@ -65,20 +65,20 @@ const tableView = {
   renderColumn: cell => {
     const { title, type, itens, required, line, column, status } = cell;
     //let template = `<th class="indexStart" id="${column}${line}" style="visibility: ${status};">${title}</th>`;
-    let template = `<td class="columnCSS"  style="visibility: ${status};"><input data-req="false" data-type="column" class="indexStart" id="${column}${line}" value="${title}" style="background-color: rgb(193, 193, 193);"></td>`;
+    let template = `<td class="columnCSS"  style="visibility: ${status};"><input data-req="false" data-type="column" class="indexStart" id="${column}${line}" value="${title}" style="text-align:center;""></td>`;
     $('.column').append(template);
   },
 
   renderIndex: cell => {
     const { title, type, itens, required, line, column, status } = cell;
-    let template = `<tr class="rows${column}${line}"><td>${line}</td>`;
+    let template = `<tr class="rows${column}${line}"><td class="baseIndex">${line}</td>`;
     $('.spreadSheet').append(template);
   },
 
   renderNormalInput: cell => {
     const { title, type, itens, required, line, column, status } = cell;
 
-    let template = `<td><input data-req="${required}" data-type="${type}" id="${column}${line}" value="${title}"/></td>`;
+    let template = `<td><input style="${status}" data-req="${required}" data-type="${type}" id="${column}${line}" value="${title}"/></td>`;
     $(`.rows0${line}`).append(template);
   },
 
