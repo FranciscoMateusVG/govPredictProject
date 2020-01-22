@@ -8,29 +8,25 @@ import inputController from './controller/inputController.js';
 
 {
   //Variables
-  let indexFlagRows,
-    nItens,
-    inputData,
-    indexFlag,
-    letterFlag,
-    rowFlag,
-    cell,
-    nRows;
-  const arrayTable = [];
+  let indexFlagRows, nItens, inputData, indexFlag, cell, nRows;
+  let arrayTable = [];
 
   //Destructuring Objects
-  let { getInput, clearInput, renderColumn, showAddRow } = columnController;
-  let {
-    renderRow,
-    getFlagRows,
-    howManyRows,
-    addRows,
-    changeLetter
-  } = rowController;
+  let { getInput, showAddRow } = columnController;
+  let { getFlagRows, howManyRows, addRows, changeLetter } = rowController;
   let { popModal, getInputModal, renderItens } = modalView;
-  let { saveTable } = saveController;
+  let { saveTable, verifyLocalStorage } = saveController;
   let { renderTable } = tableView;
   let { validateInputs, updateInputs, getCellValues } = inputController;
+
+  //Verify Local Stroage
+  const storage = verifyLocalStorage();
+
+  if (storage) {
+    arrayTable = storage.recipe;
+    renderTable('', storage);
+    showAddRow();
+  }
 
   //Functions
   const createColumn = () => {
@@ -106,16 +102,18 @@ import inputController from './controller/inputController.js';
   };
 
   const createRow = () => {
+    indexFlagRows = getFlagRows();
     //1- Add how many rows you wish to create
     addRows(indexFlagRows, 10);
 
-    //Get IndexFlag Of Rows
+    //2 -Get IndexFlag Of Rows
     indexFlagRows = getFlagRows();
     nRows = howManyRows() + 1;
 
-    //How Many Rows to Create? How Many Columns there is?
-    let rowsToCreate = indexFlagRows - nRows;
+    //3 - How Many Rows to Create? How Many Columns there are?
     let columnsBluePrint = [];
+    console.log(arrayTable);
+
     arrayTable.forEach(value => {
       if (value.part === 'header' && value.title !== '@') {
         columnsBluePrint.push(value);
@@ -147,6 +145,9 @@ import inputController from './controller/inputController.js';
       //One row created
       nRows = howManyRows() + 1;
     }
+
+    //Save Table
+    saveTable(arrayTable);
   };
 
   const controlCells = e => {
@@ -158,6 +159,9 @@ import inputController from './controller/inputController.js';
 
     //3 - Update Inputs
     updateInputs(cellValues, arrayTable);
+
+    //Save Table
+    saveTable(arrayTable);
   };
 
   //Event Listners

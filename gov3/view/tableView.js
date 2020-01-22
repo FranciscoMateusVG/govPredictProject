@@ -1,31 +1,64 @@
 const tableView = {
-  renderTable: arrayTable => {
-    let lastElement = arrayTable.length - 1;
+  renderTable: (arrayTable, storage) => {
+    let lastElement, cellToAdd;
 
-    let cellToAdd = arrayTable[lastElement];
+    if (storage) {
+      const { recipe, letter, nrows } = storage;
+      $('.letterFlag').text(letter);
+      $('.rowFlag').text(nrows);
+      recipe.forEach(value => {
+        switch (value.part) {
+          case 'header':
+            //Render Header
+            tableView.renderColumn(value);
+            break;
 
-    switch (cellToAdd.part) {
-      case 'header':
-        //Render Header
-        tableView.renderColumn(cellToAdd);
-        break;
+          case 'index':
+            //Render Index
+            tableView.renderIndex(value);
 
-      case 'index':
-        //Render Index
-        tableView.renderIndex(cellToAdd);
+            break;
+          case 'input':
+            //Render Rows
 
-        break;
-      case 'input':
-        //Render Rows
-
-        if (!cellToAdd.itens) {
-          //Normal
-          tableView.renderNormalInput(cellToAdd);
-        } else {
-          //Selected
-          tableView.renderSelectInput(cellToAdd);
-          break;
+            if (!value.itens) {
+              //Normal
+              tableView.renderNormalInput(value);
+            } else {
+              //Selected
+              tableView.renderSelectInput(value);
+              break;
+            }
         }
+      });
+    } else {
+      lastElement = arrayTable.length - 1;
+
+      cellToAdd = arrayTable[lastElement];
+
+      switch (cellToAdd.part) {
+        case 'header':
+          //Render Header
+          tableView.renderColumn(cellToAdd);
+          break;
+
+        case 'index':
+          //Render Index
+          tableView.renderIndex(cellToAdd);
+
+          break;
+        case 'input':
+          //Render Rows
+
+          if (!cellToAdd.itens) {
+            //Normal
+            tableView.renderNormalInput(cellToAdd);
+          } else {
+            //Selected
+            tableView.renderSelectInput(cellToAdd);
+            break;
+          }
+      }
     }
   },
 
