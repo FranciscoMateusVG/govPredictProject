@@ -1,10 +1,10 @@
-import Cell from './model/cell.js';
-import tableView from './view/tableView.js';
-import modalView from './view/modalView.js';
-import rowController from './controller/rowController.js';
-import saveController from './controller/saveController.js';
-import inputController from './controller/inputController.js';
-import columnController from './controller/columnController.js';
+import Cell from "./model/cell.js";
+import tableView from "./view/tableView.js";
+import modalView from "./view/modalView.js";
+import rowController from "./controller/rowController.js";
+import saveController from "./controller/saveController.js";
+import inputController from "./controller/inputController.js";
+import columnController from "./controller/columnController.js";
 
 {
   //Variables
@@ -30,14 +30,14 @@ import columnController from './controller/columnController.js';
 
   if (storage) {
     arrayTable = storage.recipe;
-    renderTable('', storage);
+    renderTable("", storage);
     showAddRow();
   }
 
   //Functions
   const createColumn = () => {
     //1 - Check for Index Start and Letter Flag
-    indexFlag = $('.indexStart').val();
+    indexFlag = $(".indexStart").val();
 
     //2 - Get Data
     inputData = getInput();
@@ -45,7 +45,7 @@ import columnController from './controller/columnController.js';
     //3- Validate if needs Index Start Cell
     if (!indexFlag) {
       //Create Cell Of index Start
-      cell = new Cell('header', '@', '', '', false, 0, 0, 'hidden');
+      cell = new Cell("header", "@", "", "", false, 0, 0, "hidden");
       arrayTable.push(cell);
       renderTable(arrayTable);
     }
@@ -54,14 +54,14 @@ import columnController from './controller/columnController.js';
     const { title, type, itens, required, column } = inputData;
 
     cell = new Cell(
-      'header',
+      "header",
       title,
       type,
       itens,
       required,
       0,
       column,
-      'visible'
+      "visible"
     );
     arrayTable.push(cell);
     renderTable(arrayTable);
@@ -71,7 +71,7 @@ import columnController from './controller/columnController.js';
     nRows = howManyRows() + 1;
 
     while (nRows <= indexFlagRows) {
-      cell = new Cell('index', nRows, '', '', false, nRows, 0, 'visible');
+      cell = new Cell("index", nRows, "", "", false, nRows, 0, "visible");
       arrayTable.push(cell);
       renderTable(arrayTable);
       nRows = howManyRows() + 1;
@@ -79,7 +79,7 @@ import columnController from './controller/columnController.js';
 
     //6- Create Input Cell
     for (let index = 1; index < nRows; index++) {
-      cell = new Cell('input', '', type, itens, required, index, column, '');
+      cell = new Cell("input", "", type, itens, required, index, column, "");
       arrayTable.push(cell);
       renderTable(arrayTable);
     }
@@ -108,28 +108,28 @@ import columnController from './controller/columnController.js';
     //4 - Get all cells in the arraytable which have the 'headers' part value
     columnsBluePrint = [];
     arrayTable.forEach(value => {
-      if (value.part === 'header' && value.title !== '@') {
+      if (value.part === "header" && value.title !== "@") {
         columnsBluePrint.push(value);
       }
     });
 
     while (nRows <= indexFlagRows) {
       //5 - Create Index Rows based on the diference between the IndexFlag and how many rows there are
-      cell = new Cell('index', nRows, '', '', false, nRows, 0, 'visible');
+      cell = new Cell("index", nRows, "", "", false, nRows, 0, "visible");
       arrayTable.push(cell);
       renderTable(arrayTable);
 
       //Create Input Rows based on Columns BluePrint
       columnsBluePrint.forEach(value => {
         cell = new Cell(
-          'input',
-          '',
+          "input",
+          "",
           value.type,
           value.itens,
           value.required,
           nRows,
           value.column,
-          ''
+          ""
         );
         arrayTable.push(cell);
         renderTable(arrayTable);
@@ -155,25 +155,25 @@ import columnController from './controller/columnController.js';
 
   //Event Listners
   /** Create Column Button */
-  $('#createColumn').click(function(e) {
+  $("#createColumn").click(function(e) {
     createColumn();
   });
 
   /** Add rows Button */
-  $('#addRows').click(function(e) {
+  $("#addRows").click(function(e) {
     e.preventDefault();
     createRow();
-    $('html, body').scrollTop($(document).height());
+    $("html, body").scrollTop($(document).height());
   });
   /** Blur input event */
-  $(document).on('blur', 'td input', function(e) {
+  $(document).on("blur", "td input", function(e) {
     controlCells(e);
   });
   /** Modal*/
-  $('select').on('change', function() {
+  $("select").on("change", function() {
     popModal();
   });
-  $('.generateItens').click(function() {
+  $(".generateItens").click(function() {
     //1 - Get Number of Itens
     nItens = getInputModal();
     //2 - Render Itens Input Fields
