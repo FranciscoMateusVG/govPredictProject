@@ -4,6 +4,7 @@ const tableView = {
 
     if (storage) {
       const { recipe, letter, nrows } = storage;
+      //Update Index
       $('.letterFlag').text(letter);
       $('.rowFlag').text(nrows);
       recipe.forEach(value => {
