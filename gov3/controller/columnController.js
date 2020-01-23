@@ -1,6 +1,4 @@
 const columnController = {
-  //Primary Functions
-
   getInput: () => {
     let obj, title, type, required, column;
     title = $('.column-title').val();

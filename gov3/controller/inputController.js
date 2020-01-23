@@ -3,15 +3,16 @@ const inputController = {
     return {
       value: e.target.value,
       cellHash: `#${e.target.id}`,
-      cell: e.target.id,
-      bgColor: e.currentTarget.style.cssText
+      cell: e.target.id
     };
   },
 
   validateInputs: cellValues => {
     const { value, cellHash } = cellValues;
-    let bgColor, required, typeValue;
+    let bgColor, required, typeValue, flag;
 
+    flag = false;
+    bgColor = 'show';
     required = $(cellHash).data('req');
     typeValue = $(cellHash).data('type');
 
@@ -19,11 +20,14 @@ const inputController = {
       !value
         ? (bgColor = { 'background-color': '#FF0000' })
         : (bgColor = { 'background-color': '#FFFFFF' });
+
+      flag = true;
     }
 
+    console.log(flag);
     switch (typeValue) {
       case 'Text':
-        isNaN(value)
+        isNaN(value) || (value.length == 0 && !flag)
           ? (bgColor = { 'background-color': '#FFFFFF' })
           : (bgColor = { 'background-color': '#FF0000' });
         break;
@@ -38,7 +42,7 @@ const inputController = {
         let regex;
 
         regex = /([0-2][0-9]|(3)[0-1])(.)(((0)[0-9])|((1)[0-2]))(.)(\d{4}|\d{2})/gi;
-        value.match(regex)
+        value.match(regex) || (value.length == 0 && !flag)
           ? (bgColor = { 'background-color': '#FFFFFF' })
           : (bgColor = { 'background-color': '#FF0000' });
 

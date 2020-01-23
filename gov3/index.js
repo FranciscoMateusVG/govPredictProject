@@ -18,12 +18,12 @@ import columnController from './controller/columnController.js';
   let arrayTable = [];
 
   //Destructuring Objects
-  let { getInput, showAddRow } = columnController;
-  let { getFlagRows, howManyRows, addRows, changeLetter } = rowController;
-  let { popModal, getInputModal, renderItens } = modalView;
-  let { saveTable, verifyLocalStorage } = saveController;
-  let { renderTable } = tableView;
-  let { validateInputs, updateInputs, getCellValues } = inputController;
+  const { getInput, showAddRow } = columnController;
+  const { getFlagRows, howManyRows, addRows, changeLetter } = rowController;
+  const { popModal, getInputModal, renderItens } = modalView;
+  const { saveTable, verifyLocalStorage } = saveController;
+  const { renderTable } = tableView;
+  const { validateInputs, updateInputs, getCellValues } = inputController;
 
   //Verify Local Stroage
   const storage = verifyLocalStorage();
@@ -84,7 +84,7 @@ import columnController from './controller/columnController.js';
       renderTable(arrayTable);
     }
 
-    //7- Change Column Letter Index
+    //7- Change Column Letter
     changeLetter(column);
 
     //8 - Show Add Row Button

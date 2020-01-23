@@ -2,9 +2,10 @@ const tableView = {
   renderTable: (arrayTable, storage) => {
     let lastElement, cellToAdd;
 
+    //Checks if localStorage exists to render the table!
     if (storage) {
       const { recipe, letter, nrows } = storage;
-      //Update Index
+      //Update index.html
       $('.letterFlag').text(letter);
       $('.rowFlag').text(nrows);
       recipe.forEach(value => {
@@ -64,27 +65,26 @@ const tableView = {
   },
 
   renderColumn: cell => {
-    const { title, type, itens, required, line, column, status } = cell;
-    //let template = `<th class="indexStart" id="${column}${line}" style="visibility: ${status};">${title}</th>`;
+    const { title, line, column, status } = cell;
     let template = `<td class="columnCSS"  style="visibility: ${status};"><input data-req="false" data-type="column" class="indexStart" id="${column}${line}" value="${title}" style="text-align:center;""></td>`;
     $('.column').append(template);
   },
 
   renderIndex: cell => {
-    const { title, type, itens, required, line, column, status } = cell;
+    const { line, column } = cell;
     let template = `<tr class="rows${column}${line}"><td class="baseIndex">${line}</td>`;
     $('.spreadSheet').append(template);
   },
 
   renderNormalInput: cell => {
-    const { title, type, itens, required, line, column, status } = cell;
+    const { title, type, required, line, column, status } = cell;
 
     let template = `<td><input style="${status}" data-req="${required}" data-type="${type}" id="${column}${line}" value="${title}"/></td>`;
     $(`.rows0${line}`).append(template);
   },
 
   renderSelectInput: cell => {
-    const { title, type, itens, required, line, column, status } = cell;
+    const { itens, line, column } = cell;
 
     let template = ` <td>
     <select id="${column}${line}">`;
